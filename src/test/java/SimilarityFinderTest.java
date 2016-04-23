@@ -14,12 +14,15 @@ public class SimilarityFinderTest {
     public void ShouldReturn0point5_WhenSetsArePartiallySimilar(){
 
     }
+
     @Test
-    public void ShouldReturn0point5_WhenSetsArePartiallySimilar(){
+    public void ShouldPass_WhenSearchResultWasCalledWithIntsTable(){
 
     }
+
     @Test
-    public void ShouldReturn0point5_WhenSetsArePartiallySimilar(){
+    public void ShouldPass_WhenSearchMethodWasCalled5Times(){
 
     }
+
 }
