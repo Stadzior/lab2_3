@@ -6,9 +6,11 @@ import org.junit.Test;
 
 public class SimilarityFinderTest {
 
-    int[] seq1,seq2,seq3,seq4;
-    SimilarityFinder finder;
-    FakeSequenceSearcher searcher;
+    private int[] seq1,seq2,seq3,seq4;
+    private SimilarityFinder finder;
+    private FakeSequenceSearcher searcher;
+    public static int DEPENDENCY_CALL_COUNTER;
+    public static int[] TABLE_PASSED_TO_SEARCH_METHOD;
     @Before
     public void initialize(){
         seq1 = new int[]{1,2,3,4};
@@ -17,6 +19,8 @@ public class SimilarityFinderTest {
         seq4 = new int[]{1,1,1,1,1};
         searcher = new FakeSequenceSearcher();
         finder = new SimilarityFinder(searcher);
+        DEPENDENCY_CALL_COUNTER = 0;
+        TABLE_PASSED_TO_SEARCH_METHOD = new int[]{};
     }
 
     @Test
@@ -34,13 +38,15 @@ public class SimilarityFinderTest {
     }
 
     @Test
-    public void ShouldPass_WhenSearchResultWasCalledWithIntsTable(){
-
+    public void ShouldPass_WhenSearchResultWasCalledWithSeq2(){
+        finder.calculateJackardSimilarity(seq1,seq2);
+        Assert.assertThat(TABLE_PASSED_TO_SEARCH_METHOD,is(seq2));
     }
 
     @Test
     public void ShouldPass_WhenSearchMethodWasCalled5Times(){
-
+        finder.calculateJackardSimilarity(seq1,seq2);
+        Assert.assertThat(DEPENDENCY_CALL_COUNTER,equalTo(seq1.length));
     }
 
 }

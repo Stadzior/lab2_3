@@ -4,6 +4,8 @@ import edu.iis.mto.search.SequenceSearcher;
 public class FakeSequenceSearcher implements SequenceSearcher {
     @Override
     public SearchResult search(int i, int[] ints) {
+        SimilarityFinderTest.DEPENDENCY_CALL_COUNTER++;
+        SimilarityFinderTest.TABLE_PASSED_TO_SEARCH_METHOD = ints;
         int position = -1;
         for(int index = 0;index<ints.length;index++){
             if(ints[index] == i){
